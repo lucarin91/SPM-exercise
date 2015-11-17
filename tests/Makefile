@@ -1,6 +1,6 @@
 # ---------------------------------------------------------------------------
 #  This program is free software; you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License version 2 as
+#  it under the terms of the GNU General Public License version 2 as 
 #  published by the Free Software Foundation.
 #
 #  This program is distributed in the hope that it will be useful,
@@ -23,29 +23,55 @@
 #
 # ---------------------------------------------------------------------------
 
+# 
+# Author: Massimo Torquati <torquati@di.unipi.it> 
+# Date:   August 2014
 #
-# FF_ROOT     pointing to the FastFlow root directory (i.e.
-#             the one containing the ff directory).
-FF_ROOT		= $HOME/fastflow
+#
+
+FF_ROOT		= $(HOME)/fastflow
 
 CXX		= g++ -std=c++11
-INCLUDES	= -I $(FF_ROOT)
-CXXFLAGS  	=
+INCLUDES	= -I $(FF_ROOT) 
+CXXFLAGS  	= -Wall #-DBLOCKING_MODE #-DNO_DEFAULT_MAPPING
 
-LDFLAGS 	= -pthread
-OPTFLAGS	= -O3 -finline-functions -DNDEBUG
+LDFLAGS 	=  -pthread
+OPTFLAGS	=  -O3 -finline-functions
 
-TARGETS		= simplecomp
+TARGETS		=               \
+	hello_node		\
+	hello_pipe  		\
+	hello_pipe2		\
+	hello_farm 		\
+	hello_farm2 		\
+	hello_farm3 		\
+	hello_farm4 		\
+	hello_ofarm		\
+	hello_map		\
+	hello_mdf		\
+	ff_send_out_to 		\
+	farm_misd 		\
+	parfor1			\
+	accelerator		\
+	fancy_pipeline		\
+	feedback		\
+	arraysum		\
+	arraysum2
 
 .PHONY: all clean cleanall
-.SUFFIXES: .cpp
+.SUFFIXES: .cpp 
 
 
 %: %.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $(OPTFLAGS) -o $@ $< $(LDFLAGS)
 
 all		: $(TARGETS)
-clean		:
+clean		: 
 	rm -f $(TARGETS)
 cleanall	: clean
 	\rm -f *.o *~
+
+all: $(TARGETS)
+
+
+

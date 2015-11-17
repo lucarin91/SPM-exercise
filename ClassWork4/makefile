@@ -26,16 +26,16 @@
 #
 # FF_ROOT     pointing to the FastFlow root directory (i.e.
 #             the one containing the ff directory).
-FF_ROOT		= $HOME/fastflow
+FF_ROOT		= /home/spm1501/public/fastflow
 
-CXX		= g++ -std=c++11
+CXX		= icpc -std=c++11 -DNO_DEFAULT_MAPPING
 INCLUDES	= -I $(FF_ROOT)
 CXXFLAGS  	=
 
 LDFLAGS 	= -pthread
 OPTFLAGS	= -O3 -finline-functions -DNDEBUG
 
-TARGETS		= simplecomp
+TARGETS		= primes_farm 
 
 .PHONY: all clean cleanall
 .SUFFIXES: .cpp
